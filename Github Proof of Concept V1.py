@@ -25,9 +25,18 @@ for col in col_objects1:
 col_objects2 = File2.dtypes[(File2.dtypes == 'object')].index.tolist()
 for col in col_objects2:
     File2[col] = File2[col].replace(0,np.nan)
-    
+
+
+# Additional Changes
+# Edit 3 - Abbreviations for File 2 column 'heat_cool_vent'
+
+File2['heat_cool_vent'] = File2['heat_cool_vent'].str.replace('Cooling', 'C')
+File2['heat_cool_vent'] = File2['heat_cool_vent'].str.replace('Heating', 'HT')
+File2['heat_cool_vent'] = File2['heat_cool_vent'].str.replace('Ventilation', 'V')
+File2['heat_cool_vent'] = File2['heat_cool_vent'].str.replace('Heat Exchange', 'HE')
+
+
 # Save Version 1
     
 File1.to_csv(r'S:\Shared Folders\CADEO\06_Get Better\Analysis & Data Science\Project Ideas\Github\Updated Building Summary V1.csv')
 File2.to_csv(r'S:\Shared Folders\CADEO\06_Get Better\Analysis & Data Science\Project Ideas\Github\Updated HVAC Summary V1.csv')
-
